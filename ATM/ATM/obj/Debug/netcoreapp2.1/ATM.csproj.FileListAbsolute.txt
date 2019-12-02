@@ -1,0 +1,11 @@
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\bin\Debug\netcoreapp2.1\ATM.deps.json
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\bin\Debug\netcoreapp2.1\ATM.runtimeconfig.json
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\bin\Debug\netcoreapp2.1\ATM.runtimeconfig.dev.json
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\bin\Debug\netcoreapp2.1\ATM.dll
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\bin\Debug\netcoreapp2.1\ATM.pdb
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\obj\Debug\netcoreapp2.1\ATM.csprojAssemblyReference.cache
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\obj\Debug\netcoreapp2.1\ATM.csproj.CoreCompileInputs.cache
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\obj\Debug\netcoreapp2.1\ATM.AssemblyInfoInputs.cache
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\obj\Debug\netcoreapp2.1\ATM.AssemblyInfo.cs
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\obj\Debug\netcoreapp2.1\ATM.dll
+C:\Users\Isaque\Desktop\Side Projects\ATM_ConsoleApplication\ATM\ATM\obj\Debug\netcoreapp2.1\ATM.pdb
