@@ -1,29 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using System.Xml.XPath;
 
 namespace ATM
 {
-    public class DataBase
+    public static class DataBase
     {
-        private readonly string Endereco = "C:\\Users\\Isaque\\Desktop\\UCL\\UCL.Xml";
-        XmlSerializer xs;
-        List<BankAccount> account_list;
+        private static readonly string Endereco = "C:\\Users\\Isaque\\Desktop\\UCL\\UCL.Xml";
 
-        public DataBase()
+        public static void Init()
         {
-            CreateXML();
-            account_list = new List<BankAccount>();
-            xs = new XmlSerializer(typeof(List<BankAccount>));
+            if (!File.Exists(Endereco))
+            {
+                CreateXML();
+            }
         }
 
-        public void CreateAccount(BankAccount account)
+        public static void CreateAccount(BankAccount account)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(Endereco);
@@ -51,7 +48,7 @@ namespace ATM
             doc.Save(Endereco);
         }
 
-        public void SaveBalance(int account, Decimal balance)
+        public static void SaveBalance(int account, Decimal balance)
         {
             var xDoc = XDocument.Load(Endereco);
 
@@ -72,7 +69,7 @@ namespace ATM
             xDoc.Save(Endereco);
         }
 
-        public decimal CheckBalance(int account)
+        public static decimal CheckBalance(int account)
         {
             var xDoc = XDocument.Load(Endereco);
 
@@ -90,7 +87,7 @@ namespace ATM
             return 0;
         }
 
-        private void CreateXML()
+        private static void CreateXML()
         {
             if (!File.Exists(Endereco))
             {

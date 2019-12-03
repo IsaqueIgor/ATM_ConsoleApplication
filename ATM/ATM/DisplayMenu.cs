@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ATM
 {
     public class DisplayMenu : BankAccount
     {
-        //private DataBase db;
-
-        public DisplayMenu()
-        {
-            //DataBase db = new DataBase();
-        }
-
         public void DisplayMenuOptions()
         {
             Console.WriteLine("--------------------- UCL Bank --------------------- \n\n");
@@ -39,6 +30,7 @@ namespace ATM
                     DisplayDepositCash();
                     break;
                 case 3:
+
                     break;
                 case 4:
                     ShowAccountBalance();
@@ -62,9 +54,7 @@ namespace ATM
             Console.WriteLine("Enter Cash value: ");
             decimal cash = Convert.ToDecimal(Console.ReadLine());
 
-            Transaction transaction = new Transaction();
-
-            if (transaction.Deposit(cash, AccountNumber))
+            if (Transaction.Deposit(cash, AccountNumber))
             {
                 Console.WriteLine("Transaction Sucess \n\n");
                 DisplayMenuOptions();
@@ -86,10 +76,9 @@ namespace ATM
             int pin = Convert.ToInt32(Console.ReadLine());
             BankAccount newBankAccount = new BankAccount(name, pin);
 
-            DataBase db = new DataBase();
             try
             {
-                db.CreateAccount(newBankAccount);
+                DataBase.CreateAccount(newBankAccount);
                 Console.WriteLine("Success");
             }
             catch (Exception ex)
@@ -100,11 +89,10 @@ namespace ATM
 
         public void ShowAccountBalance()
         {
-            DataBase db = new DataBase();
             Console.Clear();
             Console.WriteLine("Enter Account Number: ");
             this.AccountNumber = Int32.Parse(Console.ReadLine());
-            var balance = db.CheckBalance(AccountNumber);
+            var balance = DataBase.CheckBalance(AccountNumber);
             Console.WriteLine("Account: " + AccountNumber + " | Balance: R$" + balance + "\n \n ");
 
             DisplayMenuOptions();

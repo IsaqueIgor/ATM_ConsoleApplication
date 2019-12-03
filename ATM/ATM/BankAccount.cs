@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace ATM
 {
     public class BankAccount
     {
+        [Required(ErrorMessage = "Please Enter your Name")]
         public string Name { get; set; }
 
         public int AccountNumber { get; set; }
