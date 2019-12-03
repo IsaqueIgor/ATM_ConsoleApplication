@@ -6,16 +6,11 @@ namespace ATM
 {
     public class DisplayMenu : BankAccount
     {
-        private DataBase db;
+        //private DataBase db;
 
         public DisplayMenu()
         {
-            DataBase db = new DataBase();
-        }
-
-        public void DisplayBalance(decimal balance)
-        {
-            Console.WriteLine(this.AccountNumber + " Balance: R$"+ balance);
+            //DataBase db = new DataBase();
         }
 
         public void DisplayMenuOptions()
@@ -28,6 +23,9 @@ namespace ATM
             Console.WriteLine(" (5) - Open a new Account");
             Console.WriteLine(" (6) - Exit \n \n");
             Console.WriteLine("----------------------------------------------------");
+
+            var temp = Convert.ToInt32(Console.ReadLine());
+            Choice(temp);
         }
 
         public void Choice(int choice)
@@ -35,7 +33,7 @@ namespace ATM
             switch (choice)
             {
                 case 1:
-                    
+
                     break;
                 case 2:
                     DisplayDepositCash();
@@ -43,52 +41,73 @@ namespace ATM
                 case 3:
                     break;
                 case 4:
+                    ShowAccountBalance();
                     break;
                 case 5:
                     CreateAccount();
                     break;
                 case 6:
-
+                    Console.Clear();
+                    Console.WriteLine(" \n \n  \n                                   Have a Nive day :) \n \n \n");
                     break;
             }
         }
 
         public void DisplayDepositCash()
         {
-            decimal cash = 0;
-            int account = 0;
             Console.Clear();
             Console.WriteLine("           $ Deposit Cash $ \n");
             Console.WriteLine("Enter Account: ");
-            account = Convert.ToInt32(Console.ReadLine());
+            this.AccountNumber = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Cash value: ");
-            cash = Convert.ToDecimal(Console.ReadLine());
+            decimal cash = Convert.ToDecimal(Console.ReadLine());
 
             Transaction transaction = new Transaction();
-            transaction.Deposit(cash, account);
+
+            if (transaction.Deposit(cash, AccountNumber))
+            {
+                Console.WriteLine("Transaction Sucess \n\n");
+                DisplayMenuOptions();
+            }
+            else
+            {
+                Console.WriteLine("           Something went wrong... Try again \n\n");
+                DisplayMenuOptions();
+            }
         }
 
         public void CreateAccount()
         {
-            decimal cash = 0;
             Console.Clear();
             Console.WriteLine("           $ Open New account $ \n");
-            Console.WriteLine("Enter your Account: ");
-            int account = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter your Name: ");
             string name = Console.ReadLine();
             Console.WriteLine("Enter your 6 Numbers PIN: ");
             int pin = Convert.ToInt32(Console.ReadLine());
+            BankAccount newBankAccount = new BankAccount(name, pin);
 
+            DataBase db = new DataBase();
             try
             {
-                db.CreateAccount(name, account, pin, cash);
+                db.CreateAccount(newBankAccount);
                 Console.WriteLine("Success");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Unable to create Account");
+                Console.WriteLine("Unable to create Account ", ex);
             }
+        }
+
+        public void ShowAccountBalance()
+        {
+            DataBase db = new DataBase();
+            Console.Clear();
+            Console.WriteLine("Enter Account Number: ");
+            this.AccountNumber = Int32.Parse(Console.ReadLine());
+            var balance = db.CheckBalance(AccountNumber);
+            Console.WriteLine("Account: " + AccountNumber + " | Balance: R$" + balance + "\n \n ");
+
+            DisplayMenuOptions();
         }
     }
 }
