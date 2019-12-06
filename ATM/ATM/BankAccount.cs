@@ -24,6 +24,13 @@ namespace ATM
             this.AccountNumber = rnd.Next(10000, 99999);
         }
 
+        public BankAccount(int accountnum, decimal accountB)
+        {
+            this.AccountNumber = accountnum;
+            this.AccountBalance = accountB;
+        }
+
         public BankAccount() { } //Construtor para poder herdar no display
+
     }
 }

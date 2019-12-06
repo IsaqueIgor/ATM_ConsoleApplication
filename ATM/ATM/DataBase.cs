@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -60,9 +61,9 @@ namespace ATM
 
                 if (childName == account.ToString())
                 {
-                    var currentBalance =  Decimal.Parse(childElem.Element("Balance").Value);
+                    var currentBalance = Decimal.Parse(childElem.Element("Balance").Value);
 
-                    childElem.SetElementValue("Balance", balance+currentBalance);
+                    childElem.SetElementValue("Balance", balance + currentBalance);
                 }
             }
 
@@ -110,6 +111,34 @@ namespace ATM
                 xwriter.Close();
             }
 
+        }
+
+        public static List<BankAccount> ListBankAccounts()
+        {
+            if (File.Exists(Endereco))
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(Endereco);
+
+                var list = new List<BankAccount>();
+
+                foreach (XmlNode node in xDoc.SelectNodes("/Accounts/Account"))
+                {
+                    var account = new BankAccount
+                    {
+                        AccountNumber = Int32.Parse(node.SelectSingleNode("AccountNumber").InnerText),
+                        AccountBalance = Decimal.Parse(node.SelectSingleNode("Balance").InnerText)
+                    };
+
+                    list.Add(account);
+                }
+
+                return list;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
